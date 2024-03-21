@@ -25,6 +25,18 @@ export function trigger(campaignName: string) {
   return Superwall.trigger(campaignName);
 }
 
+export function setRegister(isRegister: string) {
+  return Superwall.setRegister(isRegister);
+}
+
 export function test(campaignName: string) {
   return Superwall.testTrigger(campaignName);
+}
+
+export function identify(userId: string) {
+  return Superwall.identify(userId);
+}
+
+export function reset() {
+  return Superwall.reset("test");
 }

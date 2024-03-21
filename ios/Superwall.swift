@@ -21,9 +21,28 @@ class Superwall: RCTEventEmitter {
         PaywallService.initPaywall(superwallApiKey: superwallApiKey, revenueCatApiKey: revenueCatApiKey)
     }
     
-    
+    @objc(setRegister:)
+    func setRegister(isRegister:String) -> Void {
+    let attributes: [String: Any] = [
+          "register": isRegister,
+          "testing": "false"
+        ]
+        Paywall.setUserAttributes(attributes)
+    }
+
+    @objc(identify:)
+    func identify(userId:String) -> Void {
+        Paywall.identify(userId: userId)
+    }
+
+    @objc(reset:)
+    func reset(test:String) -> Void {
+        Paywall.reset()
+    }
+
     @objc(trigger:resolver:rejecter:)
     func trigger(campaignName:String, resolver: @escaping RCTPromiseResolveBlock,  rejecter: @escaping RCTPromiseRejectBlock) -> Void {
+        
         Paywall.trigger(
           event: campaignName,
           params: nil,
